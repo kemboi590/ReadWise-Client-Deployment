@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../context/userContext/Context";
 import Axios from "axios";
 import { apidomain } from "../../utils/domain";
-import "./updateQuill.css";
+import "./updatequill.css";
 
 const modules = {
   toolbar: [
