@@ -9,7 +9,7 @@ import { FaTrash } from "react-icons/fa";
 import { BsPencilFill } from "react-icons/bs";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import Comments from "./Comments";
-import "./SinglePost.css";
+import "./singlePost.css";
 import UpdateQuill from "./UpdateQuill";
 
 // SINGLE POST COMPONENT
