@@ -1,0 +1,151 @@
+.commentsPage {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.myFormComments {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  bottom: 0;
+  align-items: center;
+  border: 1px solid rgba(54, 54, 54, 0.072);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  gap: 1rem;
+  width: 60%;
+  margin: 12px auto;
+}
+
+
+.inputComment {
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid rgba(54, 54, 54, 0.072);
+  padding: 0.5rem 0.5rem;
+  margin: 0.5rem 0.2rem;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.6px;
+  line-height: 1.5;
+  resize: none;
+}
+.errorcomment {
+  position: absolute;
+  bottom: 0;
+}
+.sbmtComment {
+  width: 10%;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0 1rem;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: #343a40;
+  color: white;
+  cursor: pointer;
+}
+
+.commentImg {
+  width: 35px;
+}
+.commentImg img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.commentCard {
+  border-radius: 20px;
+  margin: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #343a40;
+  width: 60%;
+  border: #343a4082 solid 1px;
+  background-color: rgba(151, 149, 149, 0.404);
+}
+
+.upperWrapper {
+  display: flex;
+  border-bottom: #343a4082 solid 1px;
+  align-items: center;
+  gap: 2rem;
+  margin: 10px;
+  margin-left: 40px;
+  padding-top: 5px;
+}
+
+.comment {
+  padding: 10px;
+  text-align: center;
+}
+
+.EditDelete {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 660px) {
+  .myFormComments {
+    width: 90%;
+  }
+  .commentCard {
+    width: 90%;
+  }
+
+  .EditDelete {
+    gap: 1rem;
+
+    margin-right: 10px;
+  }
+  .commentImg {
+    width: 25px;
+  }
+
+  .inputComment {
+    border-radius: 15px;
+
+    margin: 0.5rem 0.2rem;
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 0.6px;
+    line-height: 1;
+  }
+  .sbmtComment {
+    width: 13%;
+    border-radius: 5px;
+    padding: 0 0.5rem;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #343a40;
+  }
+}
+@media screen and (max-width: 660px) {
+  .myFormComments {
+    width: 100%;
+  }
+  .commentCard {
+    width: 100%;
+  }
+  .upperWrapper {
+    display: flex;
+    border-bottom: #343a4082 solid 1px;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2px;
+    margin-left: 10px;
+    padding-top: 5px;
+  }
+}

@@ -1,0 +1,1 @@
+export const apidomain = "https://readwiseapi.azurewebsites.net/";
