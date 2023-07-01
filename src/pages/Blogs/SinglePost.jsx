@@ -12,6 +12,10 @@ import Comments from "./Comments";
 import "./singlePost.css";
 import UpdateQuill from "./UpdateQuill";
 
+//toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // SINGLE POST COMPONENT
 function SinglePost() {
   const navigate = useNavigate();
@@ -90,9 +94,29 @@ function SinglePost() {
         },
       });
       navigate("/blogs");
-      alert(response.data);
+      toast.success(response.data, {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      //alert(response.data);
     } catch (error) {
-      alert("Oops! Something went wrong. Please try again later.");
+      toast.error("Oops! Something went wrong. Please try again later.", {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      //alert("Oops! Something went wrong. Please try again later.");
     }
   };
 

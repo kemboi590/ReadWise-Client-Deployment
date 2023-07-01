@@ -1,6 +1,10 @@
 import React from "react";
 import "./login.css";
 
+//toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -32,14 +36,34 @@ function Login() {
     Axios.post(`${apidomain}/auth/login`, data)
       .then(({ data }) => {
         if (data.token) {
-          alert("You are logged in!");
+          toast.success("😊You are logged in!", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+
           navigate("/");
           console.log(user);
           dispatch({ type: "LOGIN_SUCCESS", payload: data });
         }
       })
       .catch(({ response }) => {
-        alert(response.data.error);
+        toast.error(response.data.error, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        // alert(response.data.error);
       });
   };
 
@@ -55,7 +79,7 @@ function Login() {
             {...register("Email")}
             className="inputFieldLogin"
           />
-          <p>{errors.email?.message}</p>
+          <p>{errors.Email?.message}</p>
         </>
         <>
           <input

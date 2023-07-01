@@ -18,6 +18,10 @@ import Logout from "./pages/Logout/Logout";
 import SinglePost from "./pages/Blogs/SinglePost";
 import UpdateQuill from "./pages/Blogs/UpdateQuill";
 
+//toast
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // import context
 import { useContext } from "react";
 import { Context } from "./context/userContext/Context";
@@ -46,6 +50,7 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ToastContainer />
 
         <Footer />
       </Router>
