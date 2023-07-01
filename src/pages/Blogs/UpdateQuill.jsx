@@ -7,6 +7,10 @@ import Axios from "axios";
 import { apidomain } from "../../utils/domain";
 import "./updatequill.css";
 
+//toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const modules = {
   toolbar: [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -51,7 +55,17 @@ function UpdateQuill({ blog, setShowReactQuill }) {
   // ON CLICKING UPDATE BTN
   const handleClick = () => {
     if (!Title || !BlogDesc || !Content.trim()) {
-      alert("Please enter all required fields");
+      toast.warning("Please enter all required fields", {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      // alert("Please enter all required fields");
       return;
     }
 
@@ -68,13 +82,35 @@ function UpdateQuill({ blog, setShowReactQuill }) {
       },
     })
       .then((response) => {
+        toast.success(response.data, {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        //alert(response.data);
         // console.log(response);
-        alert(response.data);
-        navigate("/blogs");
+       navigate("/blogs");
+        
       })
       .catch((error) => {
         console.log(error);
-        alert("Please try again later");
+        toast.error("Please try again later", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+
+        // alert("Please try again later");
       });
   };
 

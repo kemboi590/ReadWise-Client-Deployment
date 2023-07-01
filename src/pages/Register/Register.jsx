@@ -6,6 +6,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { apidomain } from "../../utils/domain";
+//toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
   UserName: yup.string().required("Full name is required"),
@@ -33,12 +36,33 @@ function Register() {
   const onSubmit = (data) => {
     Axios.post(`${apidomain}/auth/register`, data)
       .then((response) => {
-        response.data.message && alert(response.data.message);
+        response.data.message &&
+          toast.success(response.data.message, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        //alert(response.data.message);
         navigate("/login");
       })
       .catch(({ response }) => {
         console.log(response);
-        alert(response.data.error);
+        toast.error(response.data.error, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        // alert(response.data.error);
       });
   };
   return (
@@ -64,14 +88,14 @@ function Register() {
           />
           <p>{errors.Email?.message}</p>
         </>
-        
+
         <>
-        <label htmlFor="Role"></label>
-        <select id="Role" {...register("Role")}>
-          <option value="">Select Role</option>
-          <option value="Author">Author</option>
-          <option value="Reader">Reader</option>
-        </select>
+          <label htmlFor="Role"></label>
+          <select id="Role" {...register("Role")}>
+            <option value="">Select Role</option>
+            <option value="Author">Author</option>
+            <option value="Reader">Reader</option>
+          </select>
           <p>{errors.Role?.message}</p>
         </>
 

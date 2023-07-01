@@ -8,6 +8,10 @@ import Axios from "axios";
 import { apidomain } from "../../utils/domain";
 import "./quillEditor.css";
 
+//toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const modules = {
   toolbar: [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -49,7 +53,18 @@ function QuillEditor() {
 
   const handleClick = () => {
     if (!Title || !BlogDesc || !Content.trim()) {
-      alert("Please enter all required fields");
+      toast.warning("Please enter all required fields!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      // alert("Please enter all required fields");
       return;
     }
 
@@ -66,12 +81,33 @@ function QuillEditor() {
     })
       .then((response) => {
         console.log(response);
-        alert(response.data);
+        toast.success(response.data, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+
+        //alert(response.data);
         navigate("/blogs");
       })
       .catch((error) => {
         console.log(error);
-        alert("Please try again later");
+        toast.error("Please try again later", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        // alert("Please try again later");
       });
   };
 

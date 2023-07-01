@@ -9,6 +9,9 @@ import userImg from "../../images/user.png";
 import { FaTrash } from "react-icons/fa";
 import { BsPencilFill } from "react-icons/bs";
 import UpdateComment from "./UpdateComment";
+//toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // COMMENTS COMPONENT
 function Comments({ textareaRef }) {
@@ -78,9 +81,31 @@ function Comments({ textareaRef }) {
         },
       });
       fetchCommentsDetails();
-      alert(response.data);
+
+      toast.success(response.data, {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      // alert(response.data);
     } catch (error) {
-      alert("Oops! Something went wrong. Please try again.");
+      toast.error("Oops! Something went wrong. Please try again.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      //alert("Oops! Something went wrong. Please try again.");
     }
   };
 
