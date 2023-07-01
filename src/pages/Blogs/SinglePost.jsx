@@ -9,27 +9,27 @@ import { FaTrash } from "react-icons/fa";
 import { BsPencilFill } from "react-icons/bs";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import Comments from "./Comments";
-import "./SinglePost.css";
+import "./singlePost.css";
 import UpdateQuill from "./UpdateQuill";
 
 // SINGLE POST COMPONENT
 function SinglePost() {
   const navigate = useNavigate();
   const { user } = useContext(Context);
+  console.log(user);
   const { id } = useParams();
-  const [blog, setBlog] = useState(null);
+  const [blog, setBlog] = useState([]);
   const [likes, setLikes] = useState(blog?.likes || 0);
   const [liked, setLiked] = useState(false);
   const textareaRef = useRef(null);
   const [showReactQuill, setShowReactQuill] = useState(false);
-  const [tempBlogData, setTempBlogData] = useState("");
 
   // GO BACK
   const goBack = () => {
     navigate("/blogs");
   };
 
-  //FETCH SINGLE BLOG
+  // FETCH SINGLE BLOG
   const fetchSingleBlog = async () => {
     try {
       const res = await Axios.get(`${apidomain}/blogs/${id}`, {
@@ -38,9 +38,7 @@ function SinglePost() {
         },
       });
       setBlog(res.data);
-      console.log(res.data);
       setLikes(res.data.Likes);
-      // console.log(res.data.Likes);
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +65,6 @@ function SinglePost() {
         });
         setLikes(likes + 1);
         setLiked(true);
-        console.log(likes + 1);
       }
     } catch (error) {
       console.log(error.message);
@@ -94,27 +91,21 @@ function SinglePost() {
       });
       navigate("/blogs");
       alert(response.data);
-    } catch (response) {
-      alert("Ops! Something went wrong. Please try again la");
+    } catch (error) {
+      alert("Oops! Something went wrong. Please try again later.");
     }
   };
 
-  // EDIT POST
-  const handleEditToggle = (blog) => {
-    setTempBlogData(blog);
+  // TOGGLE EDIT POST
+  const handleEditToggle = () => {
     setShowReactQuill(!showReactQuill);
-    navigate(`/updateblog/${blog.PostID}`, { state: blog });
   };
-
-  // DISPLAY LOADING IF BLOG IS NULL
-  if (!blog) {
-    return <div>Loading...</div>;
-  }
   const CreatedAt = new Date(blog.CreatedAt).toLocaleString();
   // RETURN SINGLE BLOG
   return (
     <div className="page">
       <div className="singleBlogPage">
+        {/* TOP SINGLE BLOG */}
         <div>
           <h2 className="SingleblogTitle">{blog.Title}</h2>
           <p className="SingleDescription">{blog.BlogDesc}</p>
@@ -122,12 +113,14 @@ function SinglePost() {
             <i>Created By:</i> <b>{blog.UserName} </b> {CreatedAt}
           </p>
         </div>
+        {/* BLOG CONTENT */}
         <div>
           <p
             className="content"
             dangerouslySetInnerHTML={{ __html: blog.Content }}
           ></p>
         </div>
+
         <div className="LikeComment">
           <h3 className="like" onClick={handleLike}>
             <FaThumbsUp /> {likes} <p className="textLike">Like</p>
@@ -144,30 +137,39 @@ function SinglePost() {
               <p className="ptag">Back</p>
             </h3>
             <h3 className="edit">
-              <BsPencilFill
-                onClick={() => {
-                  handleEditToggle(blog);
-                }}
-              />
-              <p className="ptag">Edit</p>
+              {user &&
+              user.UserName === blog.UserName &&
+              user.Email === blog.Email ? (
+                <>
+                  <BsPencilFill onClick={() => handleEditToggle(blog)} />
+                  <p className="ptag">Edit</p>
+                </>
+              ) : null}
             </h3>
-            <div>
-              {showReactQuill && (
-                <div className="createMyBlog">
-                  <UpdateQuill blog={tempBlogData} />
-                </div>
-              )}
-            </div>
 
             <h3 className="deleteComment">
-              <FaTrash onClick={() => handleDelete(blog.PostID)} />
-              <p className="ptag">Delete</p>
+              {user &&
+              user.UserName === blog.UserName &&
+              user.Email === blog.Email ? (
+                <>
+                  <FaTrash onClick={() => handleDelete(blog.PostID)} />
+                  <p className="ptag">Delete</p>
+                </>
+              ) : null}
             </h3>
           </div>
         </div>
+        {/*CALL UPDATE BLOG COMPONET*/}
+        <div>
+          {showReactQuill && (
+            <UpdateQuill blog={blog} setShowReactQuill={setShowReactQuill} />
+          )}
+        </div>
+
+        {/* CALL COMMENT COMPONENT */}
         <div className="forComments">
           <h3 className="titleComment">comments</h3>
-          <Comments textareaRef={textareaRef} />
+          {blog && <Comments textareaRef={textareaRef} />}
         </div>
       </div>
     </div>
@@ -175,3 +177,4 @@ function SinglePost() {
 }
 
 export default SinglePost;
+// great
