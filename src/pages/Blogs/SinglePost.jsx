@@ -176,7 +176,7 @@ function SinglePost() {
               user.UserName === blog.UserName &&
               user.Email === blog.Email ? (
                 <>
-                  <FaTrash onClick={() => handleDelete(blog.PostID)} />
+                  <FaTrash onClick={() => handleDelete(blog.PostID)} className="trash"/>
                   <p className="ptag">Delete</p>
                 </>
               ) : null}

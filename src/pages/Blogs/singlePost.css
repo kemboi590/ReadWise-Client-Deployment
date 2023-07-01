@@ -72,6 +72,12 @@
 .textComment {
   font-size: 17px;
 }
+.edit{
+  cursor: pointer;
+}
+.trash{
+  cursor: pointer;
+}
 
 .deleteEditPost {
   display: flex;
@@ -81,9 +87,12 @@
   margin-left: auto;
   margin-right: 1rem;
 }
-
+.back{
+  cursor: pointer;
+}
 .ptag {
   font-size: 17px;
+  
 }
 .backIcon {
   font-size: 27px;
@@ -153,5 +162,4 @@
   .deleteEditPost {
     gap: 0.5rem;
   }
-  
 }

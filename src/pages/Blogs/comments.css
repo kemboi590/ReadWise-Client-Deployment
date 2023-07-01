@@ -3,13 +3,11 @@
   flex-direction: column;
   margin-top: 2rem;
   margin-bottom: 2rem;
-
 }
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 .myFormComments {
   display: flex;
@@ -24,7 +22,6 @@
   width: 60%;
   margin: 12px auto;
 }
-
 
 .inputComment {
   width: 100%;
@@ -87,6 +84,9 @@
 .comment {
   padding: 10px;
   text-align: center;
+}
+.deleteComment {
+  cursor: pointer;
 }
 
 .EditDelete {
