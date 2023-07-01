@@ -13,20 +13,17 @@ function Blogs() {
   const [blogs, setBlogs] = useState([]);
 
   const fetchBlogs = async () => {
-   await Axios.get(`${apidomain}/blogs`, {
+    const res = await Axios.get(`${apidomain}/blogs`, {
       headers: {
         Authorization: `${user.token}`,
       },
-    }).then((response) => {
-      setBlogs(response.data);
-    }).catch((response) => { 
-      console.log(response);
-    })
+    });
+    setBlogs(res.data);
   };
+
   useEffect(() => {
     fetchBlogs();
   }, []);
-  //console.log(blogs);
 
   return (
     <div className="blogsPage">
@@ -38,6 +35,7 @@ function Blogs() {
       <div className="allBlogs">
         {blogs &&
           blogs.map((blog, index) => {
+            const updatedAt = new Date(blog.UpdatedAt).toLocaleString(); // Format the UpdatedAt date
             return (
               <Link to={`/blog/${blog.PostID}`} key={index}>
                 <div className="singleBlog" key={index}>
@@ -49,7 +47,8 @@ function Blogs() {
                       <p className="author">{blog.UserName}</p>
                     </div>
                     <div className="timePosted">
-                      <p className="time">{blog.UpdatedAt}</p>
+                      <p className="time">{updatedAt}</p>{" "}
+                      {/* Use the formatted date */}
                     </div>
                   </div>
                   <div className="mainBlog">
