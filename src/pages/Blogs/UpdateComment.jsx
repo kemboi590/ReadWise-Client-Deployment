@@ -5,6 +5,10 @@ import Axios from "axios";
 import { Context } from "../../context/userContext/Context";
 import { apidomain } from "../../utils/domain";
 
+//toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function UpdateComment({ comment, fetchCommentsDetails }) {
   const { user } = useContext(Context); // user details
   const [newComment, setNewComment] = useState(""); // comment details
@@ -27,7 +31,17 @@ function UpdateComment({ comment, fetchCommentsDetails }) {
       .then((response) => {
         fetchCommentsDetails();
         //console.log(response);
-        alert(response.data);
+        toast.success(response.data, {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+       // alert(response.data);
       })
       .catch((error) => {
         console.log(error);
